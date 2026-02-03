@@ -1,5 +1,5 @@
 const ciphers = [
-  { name: "Caesar", shift: 3 },
+  { name: "Caesar", shift: 244 }, // effectively shift 10
   { name: "ROT13" },
   { name: "Atbash" }
 ];
@@ -66,4 +66,49 @@ function startTimer(seconds) {
 
 input.addEventListener('input', () => {
   const correct = messages[currentCipher % messages.length].toUpperCase();
-  if (input.value.toUpperCase() === correct) y
+  if (input.value.toUpperCase() === correct) yesBtn.disabled = false;
+  else yesBtn.disabled = true;
+});
+
+// Dynamic No button
+noBtn.addEventListener('mouseover', () => {
+  const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+  const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+});
+
+// YES button behavior
+yesBtn.addEventListener('click', () => {
+  kisses++;
+  kissesSpan.textContent = kisses;
+  localStorage.setItem('kisses', kisses);
+
+  for(let i=0; i<20; i++){
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    confetti.style.left = Math.random()*window.innerWidth+'px';
+    confetti.style.top = '0px';
+    document.body.appendChild(confetti);
+    setTimeout(()=>confetti.remove(),1000);
+  }
+
+  currentCipher++;
+  if(currentCipher < messages.length){
+    setCipher();
+  } else {
+    alert("Mission accomplished! Now find your secret letter to proceed to the next mission.");
+    const proceedBtn = document.createElement('button');
+    proceedBtn.textContent = "Proceed to next mission";
+    proceedBtn.style.padding = "10px 20px";
+    proceedBtn.style.fontSize = "1em";
+    proceedBtn.style.marginTop = "20px";
+    proceedBtn.style.cursor = "pointer";
+    document.body.appendChild(proceedBtn);
+    proceedBtn.addEventListener('click', () => {
+        window.location.href = "valentine.html";
+    });
+  }
+});
+
+setCipher();
