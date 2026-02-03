@@ -1,0 +1,87 @@
+/* Shared styles for both QR code pages */
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+}
+
+/* Headings */
+h1 {
+  margin-top: 50px;
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+#yesBtn {
+  background: #28a745;
+  color: white;
+}
+
+#noBtn {
+  background: #dc3545;
+  color: white;
+  position: absolute;
+  transition: all 0.2s ease;
+}
+
+/* Hearts and Confetti */
+.heart, .confetti {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.heart {
+  width: 20px;
+  height: 20px;
+  background: pink;
+  transform: rotate(45deg);
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: pink;
+  border-radius: 50%;
+}
+
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: 10px; top: 0; }
+
+.confetti {
+  width: 10px;
+  height: 10px;
+  background: #ff69b4;
+  animation: fall 2s linear forwards;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(300px) rotate(360deg); opacity: 0; }
+}
+
+/* Countdown, final message, call me */
+#finalMessage,
+#callMe {
+  font-size: 2em;
+  color: #d10047;
+  display: none;
+  margin-top: 50px;
+}
+
+#callMe {
+  margin-top: 20px;
+  color: #b3003b;
+  cursor: pointer;
+}
